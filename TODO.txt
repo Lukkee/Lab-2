@@ -1,0 +1,5 @@
+---=== TODO ===---
+* Få bort saker från homepage
+* Snygga till contact-form, möjligen bort från footer
+* Kika på professionella sidor för inspiration
+* Lös problem med alignment
