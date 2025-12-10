@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lukas Lundin</title>
+    <link rel="stylesheet" href="./res/style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <a href="./index.html"><h1 class="title">Lukas Lundin</h1></a>
+            <ul class="navlist">
+                <a class="navbutton" href="./index.html">Home</a>
+                <a class="navbutton" href="./about.html">About</a>
+                <a class="navbutton" href="./projects.html">Projects</a>
+                <a class="navbutton current" href="#contact">Contact</a>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-container">
+        <!-- Hero -->
+        <section class="hero-container flex-center">
+            <div class="hero-image-container">
+                <img src="./res/img/me.png" alt="Portrait picture of myself" class="hero-image">
+            </div>
+            <div class="hero-text-container">
+                <h1>Lukas Lundin</h1>
+                <h3>Computer Engineering Student</h3>
+            </div>
+        </section>
+        <hr class="separator">
+
+        <section class="contact-section">
+            <h2>Contact</h2>
+            <p>If you want to come in contact with me you can choose from the different links or my email below.</p>
+            <div class="contact-box flex-center">
+                <div class="email-box">
+                    <h2>Email</h2>
+                    <p>Reach me by my email at
+                        <a href="mailto:lukas@holy.nu">lukas@holy.nu</a>, 
+                        or using the contact form in the footer of this website!
+                    </p>
+                </div>
+                <ul class="link-list">
+                    <h2>Links</h2>
+                    <li><div class="contact-info">
+                        <a href="https://github.com/Lukkee"><h3>Github</h3></a>
+                        <p>You can find most of my projects on Github.</p>
+                    </div></li>
+                    <li><div class="contact-info">
+                        <a href="https://www.linkedin.com/in/lukas-lundiin/"><h3>LinkedIn</h3></a>
+                        <p>You can reach me professionally by my LinkedIn.</p>
+                    </div></li>
+                    <li><div class="contact-info">
+                        <a href="https://www.facebook.com/lukas.lundin.1/"><h3>Facebook</h3></a>
+                        <p>You can reach me personally by my Facebook.</p>
+                    </div></li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <section class="footer-container">
+            <form action="mailto:lukketube@gmail.com" method="post" enctype="text/plain" class="contact-form" id="contact">
+                <h3>Contact form</h3>
+                <div class="name-email-container">
+                    <input type="text" name="name" id="fname" placeholder="Name">
+                    <input type="email" name="mail" id="femail" placeholder="example@mail.com">
+                </div>
+                <input type="text" name="subject" id="fsubject" placeholder="Subject">
+                <div class="message-container">
+                    <textarea name="comment" id="fmessage" placeholder="Message"></textarea>
+                    <input type="submit" value="Send">
+                </div>
+            </form>
+            <section class="footer-footer flex-center">
+                <h5>©2025, Lukas Lundin</h5>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+        </section>
+        </section>
+        <section class="footer-container">
+            <h3>Info</h3>
+            <div class="footer-text">
+                <p>
+                    This webpage was created as part of a laboration for the course DA558A HT25 Javascript for web development. 
+                    And will possibly become a kind of personal portfolio in the future, but until then the content of this page
+                    should only be seen from a course-project point of view.
+                </p>
+            </div>
+            <div class="footer-references">
+                <a href="https://github.com/Lukkee"><div class="github-link"></div></a>
+                <a href="https://www.linkedin.com/in/lukas-lundiin/"><div class="linkedin-link"></div></a>
+                <a href="https://www.facebook.com/lukas.lundin.1/"><div class="facebook-link"></div></a>
+            </div>
+        </section>
+    </footer>
+    </body>
+</html>
