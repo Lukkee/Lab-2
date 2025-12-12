@@ -12,6 +12,11 @@
     --border-standard: 2px solid var(--color-accent-dark);
     --box-shadow-sm: 0 0 10px rgba(0, 0, 0, 0.5);
 
+    --border-color-default: #ccc;
+    --border-color-focus: #4A90E2;
+    --border-color-error: #dc3545;
+    --border-color-valid: #2ecc71;
+
     /* Sizes */
     --font-size-xl: 3rem;
     --font-size-lg: 2rem;
@@ -219,17 +224,20 @@ footer {
     mask-position: center;
 }
 
-.github-link { mask-image: url('./img/github.png'); }
-.linkedin-link { mask-image: url('./img/linkedin.png'); }
-.facebook-link { mask-image: url('./img/facebook.png'); }
+.github-link { mask-image: url('../img/github.png'); }
+.linkedin-link { mask-image: url('../img/linkedin.png'); }
+.facebook-link { mask-image: url('../img/facebook.png'); }
 
 /* Contact form */
 .contact-form {
     display: flex;
     flex-direction: column;
-    padding: 0 2rem;
+    padding: 0 2rem 2rem 2rem;
     box-sizing: border-box;
     gap: 0.25rem;
+    background-color: var(--color-accent-light);
+    border-radius: 2rem;
+    border: var(--border-standard);
 }
 
 .footer-container h3,
@@ -238,10 +246,21 @@ footer {
     text-align: center;
 }
 
-.contact-form input, textarea, button {
-    background-color: var(--color-bg);
+.contact-form input, select, textarea, button {
     border-radius: 5px;
-    border: 1px solid var(--color-accent-dark);
+    border: 3px solid var(--border-color-default);
+}
+
+.contact-form input:focus, select:focus, textarea:focus {
+    border-color: var(--border-color-focus);
+}
+
+.contact-form .input-error {
+    border-color: var(--border-color-error);
+}
+
+.contact-form .input-valid {
+    border-color: var(--border-color-valid);
 }
 
 .name-container {

@@ -44,7 +44,7 @@
                         <a href="mailto:lukas@holy.nu">lukas@holy.nu</a>, 
                         or using the contact form!
                     </p>
-                    <form action="mailto:lukas@holy.nu" method="post" enctype="text/plain" class="contact-form">
+                    <form action="" class="contact-form">
                         <h3>Contact form</h3>
                         <div class="name-container">
                             <input type="text" name="firstname" id="ffirstname" placeholder="First Name">
@@ -52,14 +52,15 @@
                         </div>
                         <input type="email" name="email" id="femail" placeholder="example@email.com">
                         <select name="subject" id="fselect">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
+                            <option value="0">Choose a subject</option>
+                            <option value="1">Subject 1</option>
+                            <option value="2">Subject 2</option>
+                            <option value="3">Subject 3</option>
                         </select>
                         <div class="message-container">
                             <textarea name="comment" id="fmessage" placeholder="Message"></textarea>
-                            <button id="fsubmit">Send</button>
-                            <button id="freset">Clear</button>
+                            <button id="fsubmit" type="button">Send</button>
+                            <button id="freset" type="button">Clear</button>
                         </div>
                     </form>
                 </div>
@@ -97,5 +98,6 @@
             </div>
         </section>
     </footer>
+    <script src="./res/js/contact.js"></script>
     </body>
 </html>
