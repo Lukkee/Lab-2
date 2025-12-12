@@ -183,7 +183,6 @@ footer {
     margin-top: 3rem;
     display: flex;
     flex-wrap: wrap;
-    /* align-items: center; */
 }
 
 
@@ -245,13 +244,13 @@ footer {
     border: 1px solid var(--color-accent-dark);
 }
 
-.name-email-container {
+.name-container {
     display: flex;
     gap: 0.25rem;
     width: 100%;
 }
 
-.name-email-container input {
+.name-container input {
     flex: 1;
     box-sizing: border-box;
     width: 100%;
@@ -542,7 +541,7 @@ footer {
         padding: 0 1rem;
     }
 
-    .name-email-container {
+    .name-container {
         flex-direction: column;
     }
 

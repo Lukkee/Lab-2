@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lukas Lundin</title>
-    <link rel="stylesheet" href="./res/style.css">
+    <link rel="stylesheet" href="./res/css/style.css">
 </head>
 <body>
 
@@ -46,15 +46,20 @@
                     </p>
                     <form action="mailto:lukas@holy.nu" method="post" enctype="text/plain" class="contact-form">
                         <h3>Contact form</h3>
-                        <div class="name-email-container">
-                            <input type="text" name="name" id="fname" placeholder="Name">
-                            <input type="email" name="mail" id="femail" placeholder="example@mail.com">
+                        <div class="name-container">
+                            <input type="text" name="firstname" id="ffirstname" placeholder="First Name">
+                            <input type="text" name="lastname" id="flastname" placeholder="Last Name">
                         </div>
-                        <input type="text" name="subject" id="fsubject" placeholder="Subject">
+                        <input type="email" name="email" id="femail" placeholder="example@email.com">
+                        <select name="subject" id="fselect">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
                         <div class="message-container">
                             <textarea name="comment" id="fmessage" placeholder="Message"></textarea>
-                            <input type="submit" value="Send">
-                            <button id="resetbtn">Reset</button>
+                            <button id="fsubmit">Send</button>
+                            <button id="freset">Clear</button>
                         </div>
                     </form>
                 </div>
