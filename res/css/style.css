@@ -12,10 +12,10 @@
     --border-standard: 2px solid var(--color-accent-dark);
     --box-shadow-sm: 0 0 10px rgba(0, 0, 0, 0.5);
 
-    --border-color-default: #ccc;
-    --border-color-focus: #4A90E2;
-    --border-color-error: #dc3545;
-    --border-color-valid: #2ecc71;
+    --color-default: #ccc;
+    --color-focus: #4A90E2;
+    --color-error: #dc3545;
+    --color-valid: #2ecc71;
 
     /* Sizes */
     --font-size-xl: 3rem;
@@ -65,6 +65,15 @@ a {
     } to {
         box-shadow: var(--box-shadow-sm);
     }
+}
+
+@keyframes shake {
+    0%   { transform: translateX(0); }
+    20%  { transform: translateX(-5px); }
+    40%  { transform: translateX(5px); }
+    60%  { transform: translateX(-5px); }
+    80%  { transform: translateX(5px); }
+    100% { transform: translateX(0); }
 }
 
 /* Header */
@@ -248,19 +257,24 @@ footer {
 
 .contact-form input, select, textarea, button {
     border-radius: 5px;
-    border: 3px solid var(--border-color-default);
+    border: 2px solid var(--color-default);
+    resize: none;
 }
 
 .contact-form input:focus, select:focus, textarea:focus {
-    border-color: var(--border-color-focus);
+    border-color: var(--color-focus);
 }
 
 .contact-form .input-error {
-    border-color: var(--border-color-error);
+    border-color: var(--color-error);
 }
 
 .contact-form .input-valid {
-    border-color: var(--border-color-valid);
+    border-color: var(--color-valid);
+}
+
+.shake {
+    animation: shake 0.4s ease-in-out;
 }
 
 .name-container {
@@ -284,6 +298,11 @@ footer {
     position: relative;
     display: flex;
     gap: 0.25rem;
+    width: 100%;
+}
+
+.message-buttons-container {
+    display: flex;
 }
 
 #fmessage {
@@ -292,6 +311,16 @@ footer {
     min-height: 3rem;
     max-height: 15rem;
     overflow-y: auto;
+}
+
+#fchar-counter{
+    position: absolute;
+    bottom: 0.4rem;
+    right: 0.6rem;
+    font-size: 0.75rem;
+    color: var(--color-accent-dark);
+    pointer-events: none; /* prevents cursor interference */
+    background: transparent;
 }
 
 /* Projects */

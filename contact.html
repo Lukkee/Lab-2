@@ -57,11 +57,15 @@
                             <option value="2">Subject 2</option>
                             <option value="3">Subject 3</option>
                         </select>
-                        <div class="message-container">
-                            <textarea name="comment" id="fmessage" placeholder="Message"></textarea>
+                        <div class="message-buttons-container">
+                            <div class="message-container">
+                                <textarea name="comment" id="fmessage" placeholder="Message" maxlength="500"></textarea>
+                                <span id="fchar-counter">0 / 20</span>
+                            </div>
                             <button id="fsubmit" type="button">Send</button>
                             <button id="freset" type="button">Clear</button>
                         </div>
+
                     </form>
                 </div>
                 <ul class="link-list">
