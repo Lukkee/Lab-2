@@ -13,10 +13,11 @@ const F_EMAIL       =   new element(document.getElementById("femail"),      0, "
 const F_SUBJECT     =   new element(document.getElementById("fsubject"),    0, "NONE",                          "NONE");
 const F_MESSAGE     =   new element(document.getElementById("fmessage"),    0, "Message can not be empty",      "Message must be at least 20 characters.");
 
-const FORM_SUBMIT       =   document.getElementById("fsubmit");
-const FORM_RESET        =   document.getElementById("freset");
-const FORM_COUNTER      =   document.getElementById("fchar-counter");
-const FORM_ERRORLIST    =   document.getElementById("ferrorlist");
+const F_SUBMIT              =   document.getElementById("fsubmit");
+const F_RESET               =   document.getElementById("freset");
+const F_COUNTER             =   document.getElementById("fchar-counter");
+const F_ERRORLIST           =   document.getElementById("ferrorlist");
+const F_SUCCESSCONTAINER    =   document.getElementById("success-container");
 
 /* Variables */
 const cdefault = '#798777';
@@ -144,27 +145,38 @@ function expressValid(elementname) {
     elementname.handle.classList.add('input-valid');
 }
 
+function successMessage() {
+    let name = F_FIRSTNAME.handle.value.trim();
+    let message = document.createElement("h4");
+    message.textContent = `Thank you ${name}! I will contact you soon!`;
+    F_SUCCESSCONTAINER.appendChild(message);
+    clearForm();
+    setTimeout( () => {
+        F_SUCCESSCONTAINER.removeChild(F_SUCCESSCONTAINER.firstChild);
+    }, 3000);
+}
+
 
 /* Update */
 
 function updateCounter() {
     const currentlen = F_MESSAGE.handle.value.length;
-    FORM_COUNTER.textContent = `${currentlen} / 20`;
+    F_COUNTER.textContent = `${currentlen} / 20`;
     
-    if (currentlen == 0) FORM_COUNTER.style.color = cdefault;
-        else if (currentlen < 20) FORM_COUNTER.style.color = cerror;
-        else FORM_COUNTER.style.color = cvalid;
+    if (currentlen == 0) F_COUNTER.style.color = cdefault;
+        else if (currentlen < 20) F_COUNTER.style.color = cerror;
+        else F_COUNTER.style.color = cvalid;
 }
 
 function updateErrors() {
-    while (FORM_ERRORLIST.firstChild) {
-        FORM_ERRORLIST.removeChild(FORM_ERRORLIST.firstChild);
+    while (F_ERRORLIST.firstChild) {
+        F_ERRORLIST.removeChild(F_ERRORLIST.firstChild);
     }
 
     for (let i = 0; i < errorlist.length; i++) {
         li = document.createElement("li");
         li.textContent = errorlist[i];
-        FORM_ERRORLIST.appendChild(li);
+        F_ERRORLIST.appendChild(li);
     }
 }
 
@@ -204,6 +216,17 @@ function clearForm() {          // - Clear all form fields after successful subm
     updateCounter();
 }       
 
+function submitForm() {
+    validateName();
+    validateEmail();
+    validateMessage();
+    updateForm();
+    
+    let errorcheck = F_FIRSTNAME.errormask | F_LASTNAME.errormask | F_EMAIL.errormask | F_MESSAGE.errormask;
+
+    if (errorcheck == 0) successMessage();
+}
+
 /* Event Listeners */
 F_MESSAGE.handle.addEventListener('input', updateCounter);
 
@@ -228,16 +251,13 @@ F_MESSAGE.handle.addEventListener('blur', function (e) {
 })
 
 /* Buttons */
-FORM_RESET.addEventListener("click", function (e) {
+F_RESET.addEventListener("click", function (e) {
     e.preventDefault();
     clearForm();
 });
 
-FORM_SUBMIT.addEventListener("click", function (e) {
+F_SUBMIT.addEventListener("click", function (e) {
     e.preventDefault();
-    validateName();
-    validateEmail();
-    validateMessage();
-    updateForm();
+    submitForm();
 });
 
