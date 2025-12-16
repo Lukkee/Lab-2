@@ -26,17 +26,19 @@ function shakeElement(elementHandle) {
 
 /* Validation functions */
 function validateName() {       // - Check if name contains only letters (no numbers or special characters)
+    let firstname = validateFirstName();
+    let lastname = validateLastName();
+    
+    return firstname | lastname;
+}
+
+function validateFirstName() {
     const firstname = FORM_FIRSTNAME.value.trim();
-    const lastname = FORM_LASTNAME.value.trim();
     let errorflags = 0;
 
-    /* Clear previous errors */
     clearError("First name can not be empty.");
     clearError("First name must contain only letters.");
-    clearError("Last name can not be empty.");
-    clearError("Last name must contain only letters.");
 
-    /* First name validation */
     if (firstname === "") {
         showError("First name can not be empty.");
         errorflags |= 1 << 0;
@@ -44,8 +46,16 @@ function validateName() {       // - Check if name contains only letters (no num
         showError("First name must contain only letters.");
         errorflags |= 1 << 1;
     }
+    return errorflags;
+}
 
-    /* Last name validation */
+function validateLastName() {
+    const lastname = FORM_LASTNAME.value.trim();
+    let errorflags = 0;
+
+    clearError("Last name can not be empty.");
+    clearError("Last name must contain only letters.");
+
     if (lastname === "") {
         showError("Last name can not be empty.");
         errorflags |= 1 << 2;
@@ -59,7 +69,31 @@ function validateName() {       // - Check if name contains only letters (no num
   
 
 function validateEmail() {      // - Check if email format is valid (contains @ and domain)
+    const email = FORM_EMAIL.value.trim();
+    let errorflags = 0;
 
+    /* Clear errors */
+    clearError("Email can not be empty.");
+    clearError("Email is not valid.");
+
+    /* Validation */
+    if (email == 0) {
+        showError("Email can not be empty.");
+        errorflags |= 1 << 0;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError("Email is not valid.");
+        errorflags |= 1 << 1;
+    }
+
+    return errorflags;
+    
+    /* 
+    ^[^\s@]+    - start with at least one character that isn't whitespace or @
+    @           - must contain exactly one @
+    [^\s@]+     - domain name part
+    \.          - dot
+    [^\s@]+$    - top-level domain
+    */
 }       
 
 function validateMessage() {    // - Check if message is at least 20 characters long
@@ -71,11 +105,11 @@ function validateMessage() {    // - Check if message is at least 20 characters 
     if (len > 20) return 0;
         else if (len == 0) {
             showError("Message can not be empty.");
-            return 1;
+            return (1 << 0);
         }
         else {
             showError("Message need to be at least 20 characters.");
-            return 2;
+            return (1 << 2);
         }
 }       
 
@@ -126,6 +160,7 @@ function updateErrors() {
 
 function validateForm() {
     let namecheck = validateName();
+    let emailcheck = validateEmail();
     let messagecheck = validateMessage();
 
     /* name */
@@ -143,6 +178,14 @@ function validateForm() {
         FORM_LASTNAME.classList.remove('input-error');
     }
 
+    /* Email */
+    if (emailcheck != 0) {
+        FORM_EMAIL.classList.add('input-error');
+        shakeElement(FORM_EMAIL);
+    } else {
+        FORM_EMAIL.classList.remove('input-error');
+    }
+
     /* message */
     if (messagecheck != 0) {
         FORM_MESSAGE.classList.add('input-error');
@@ -156,16 +199,21 @@ function validateForm() {
 function clearForm() {          // - Clear all form fields after successful submission
     document.getElementById("ffirstname").value = "";
     FORM_FIRSTNAME.classList.remove('input-error');
+    FORM_FIRSTNAME.classList.remove('input-valid');
     
     document.getElementById("flastname").value = "";
     FORM_LASTNAME.classList.remove('input-error');
+    FORM_LASTNAME.classList.remove('input-valid');
 
     document.getElementById("femail").value = "";
+    FORM_EMAIL.classList.remove('input-error');
+    FORM_EMAIL.classList.remove('input-valid');
     
     document.getElementById("fselect").selectedIndex = 0;
 
     document.getElementById("fmessage").value = "";
     FORM_MESSAGE.classList.remove('input-error');
+    FORM_MESSAGE.classList.remove('input-valid');
 
     clearAllErrors();
     updateCounter();
@@ -173,6 +221,60 @@ function clearForm() {          // - Clear all form fields after successful subm
 
 /* Event Listeners */
 FORM_MESSAGE.addEventListener('input', updateCounter);
+
+FORM_FIRSTNAME.addEventListener('blur', function (e) {
+    let errorcheck = validateFirstName();
+    FORM_FIRSTNAME.classList.remove('input-error');
+    FORM_FIRSTNAME.classList.remove('input-valid');
+    
+    if (errorcheck & (1 << 0) || errorcheck & (1 << 1)) {
+            FORM_FIRSTNAME.classList.add('input-error');
+            shakeElement(FORM_FIRSTNAME);
+        } else if (errorcheck == 0) {
+            FORM_FIRSTNAME.classList.add('input-valid');
+    }
+})
+
+FORM_LASTNAME.addEventListener('blur', function (e) {
+    let errorcheck = validateLastName();
+    FORM_LASTNAME.classList.remove('input-error');
+    FORM_LASTNAME.classList.remove('input-valid');
+    
+    if (errorcheck & (1 << 2) || errorcheck & (1 << 3)) {
+            FORM_LASTNAME.classList.add('input-error');
+            shakeElement(FORM_LASTNAME);
+        } else if (errorcheck == 0) {
+            FORM_LASTNAME.classList.add('input-valid');
+    }
+})
+
+FORM_EMAIL.addEventListener('blur', function (e) {
+    let errorcheck = validateEmail();    
+    
+    FORM_EMAIL.classList.remove('input-error');
+    FORM_EMAIL.classList.remove('input-valid');
+
+    if (errorcheck != 0) {
+        FORM_EMAIL.classList.add('input-error');
+        shakeElement(FORM_EMAIL);
+    } else {
+        FORM_EMAIL.classList.add('input-valid');
+    }
+});
+
+FORM_MESSAGE.addEventListener('blur', function (e) {
+    let errorcheck = validateMessage();
+
+    FORM_MESSAGE.classList.remove('input-error');
+    FORM_MESSAGE.classList.remove('input-valid');
+
+    if (errorcheck != 0) {
+        FORM_MESSAGE.classList.add('input-error');
+        shakeElement(FORM_MESSAGE);
+    } else {
+        FORM_MESSAGE.classList.add('input-valid');
+    }
+})
 
 /* Buttons */
 FORM_RESET.addEventListener("click", function (e) {
