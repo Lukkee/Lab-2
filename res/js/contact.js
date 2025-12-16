@@ -1,9 +1,18 @@
-/* document ID constants */
-const FORM_FIRSTNAME    =   document.getElementById("ffirstname");
-const FORM_LASTNAME     =   document.getElementById("flastname");
-const FORM_EMAIL        =   document.getElementById("femail");
-const FORM_SUBJECT      =   document.getElementById("fsubject");
-const FORM_MESSAGE      =   document.getElementById("fmessage");
+class element {
+    constructor(handle, errormask, e_msg1, e_msg2){
+        this.handle = handle;
+        this.errormask = errormask;
+        this.e_msg1 = e_msg1;
+        this.e_msg2 = e_msg2;
+    }
+}
+
+const F_FIRSTNAME   =   new element(document.getElementById('ffirstname'),  0, "First name can not be empty.",  "First name must contain only letters.");
+const F_LASTNAME    =   new element(document.getElementById("flastname"),   0, "Last name can not be empty.",   "Last name must contain only letters.");
+const F_EMAIL       =   new element(document.getElementById("femail"),      0, "Email can not be empty.",       "Email is not valid.");
+const F_SUBJECT     =   new element(document.getElementById("fsubject"),    0, "NONE",                          "NONE");
+const F_MESSAGE     =   new element(document.getElementById("fmessage"),    0, "Message can not be empty",      "Message must be at least 20 characters.");
+
 const FORM_SUBMIT       =   document.getElementById("fsubmit");
 const FORM_RESET        =   document.getElementById("freset");
 const FORM_COUNTER      =   document.getElementById("fchar-counter");
@@ -26,67 +35,50 @@ function shakeElement(elementHandle) {
 
 /* Validation functions */
 function validateName() {       // - Check if name contains only letters (no numbers or special characters)
-    let firstname = validateFirstName();
-    let lastname = validateLastName();
-    
-    return firstname | lastname;
+    validateFirstName();
+    validateLastName();
 }
 
 function validateFirstName() {
-    const firstname = FORM_FIRSTNAME.value.trim();
-    let errorflags = 0;
+    clearError(F_FIRSTNAME.e_msg1);
+    clearError(F_FIRSTNAME.e_msg2);
 
-    clearError("First name can not be empty.");
-    clearError("First name must contain only letters.");
-
-    if (firstname === "") {
-        showError("First name can not be empty.");
-        errorflags |= 1 << 0;
+    if (F_FIRSTNAME.handle.value.trim() === "") {
+        showError(F_FIRSTNAME.e_msg1);
+        F_FIRSTNAME.errormask |= 1 << 0;
     } else if (!/^[A-Za-z]+$/.test(firstname)) {
-        showError("First name must contain only letters.");
-        errorflags |= 1 << 1;
+        showError(F_FIRSTNAME.e_msg2);
+        F_FIRSTNAME.errormask |= 1 << 1;
     }
-    return errorflags;
 }
 
 function validateLastName() {
-    const lastname = FORM_LASTNAME.value.trim();
-    let errorflags = 0;
+    clearError(F_LASTNAME.e_msg1);
+    clearError(F_LASTNAME.e_msg2);
 
-    clearError("Last name can not be empty.");
-    clearError("Last name must contain only letters.");
-
-    if (lastname === "") {
-        showError("Last name can not be empty.");
-        errorflags |= 1 << 2;
-    } else if (!/^[A-Za-z]+$/.test(lastname)) {
-        showError("Last name must contain only letters.");
-        errorflags |= 1 << 3;
+    if (F_LASTNAME.handle.value.trim() === "") {
+        showError(F_LASTNAME.e_msg1);
+        F_LASTNAME.errormask |= 1 << 0;
+    } else if (!/^[A-Za-z]+$/.test(firstname)) {
+        showError(F_LASTNAME.e_msg2);
+        F_LASTNAME.errormask |= 1 << 1;
     }
-
-    return errorflags;
 }
   
 
 function validateEmail() {      // - Check if email format is valid (contains @ and domain)
-    const email = FORM_EMAIL.value.trim();
-    let errorflags = 0;
+    let email = F_EMAIL.handle.value.trim();
 
-    /* Clear errors */
-    clearError("Email can not be empty.");
-    clearError("Email is not valid.");
+    clearError(F_EMAIL.e_msg1);
+    clearError(F_EMAIL.e_msg2);
 
-    /* Validation */
-    if (email == 0) {
-        showError("Email can not be empty.");
-        errorflags |= 1 << 0;
+    if ( email == 0) {
+        showError(F_EMAIL.e_msg1);
+        F_EMAIL.errormask |= 1 << 0;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showError("Email is not valid.");
-        errorflags |= 1 << 1;
+        showError(F_EMAIL.e_msg2);
+        F_EMAIL.errormask |= 1 << 1;
     }
-
-    return errorflags;
-    
     /* 
     ^[^\s@]+    - start with at least one character that isn't whitespace or @
     @           - must contain exactly one @
@@ -97,19 +89,19 @@ function validateEmail() {      // - Check if email format is valid (contains @ 
 }       
 
 function validateMessage() {    // - Check if message is at least 20 characters long
-    len = FORM_MESSAGE.value.length;
+    len = F_MESSAGE.handle.value.length;
 
-    clearError("Message can not be empty.");
-    clearError("Message need to be at least 20 characters.")
+    clearError(F_MESSAGE.e_msg1);
+    clearError(F_MESSAGE.e_msg2);
 
     if (len > 20) return 0;
         else if (len == 0) {
-            showError("Message can not be empty.");
-            return (1 << 0);
+            showError(F_MESSAGE.e_msg1);
+            F_MESSAGE.errormask |= 1 << 0;
         }
         else {
-            showError("Message need to be at least 20 characters.");
-            return (1 << 2);
+            showError(F_MESSAGE.e_msg2);
+            F_MESSAGE.errormask |= 1 << 2;
         }
 }       
 
@@ -138,7 +130,7 @@ function clearAllErrors() {
 /* Update */
 
 function updateCounter() {
-    const currentlen = FORM_MESSAGE.value.length;
+    const currentlen = F_MESSAGE.handle.value.length;
     FORM_COUNTER.textContent = `${currentlen} / 20`;
     
     if (currentlen == 0) FORM_COUNTER.style.color = cdefault;
@@ -159,120 +151,120 @@ function updateErrors() {
 }
 
 function validateForm() {
-    let namecheck = validateName();
-    let emailcheck = validateEmail();
-    let messagecheck = validateMessage();
+    validateName();
+    validateEmail();
+    validateMessage();
 
     /* name */
-    if (namecheck & (1 << 0) || namecheck & (1 << 1)) {
-        FORM_FIRSTNAME.classList.add('input-error');
-        shakeElement(FORM_FIRSTNAME);
+    if (F_FIRSTNAME.errormask & (1 << 0) || F_FIRSTNAME.errormask & (1 << 1)) {
+        F_FIRSTNAME.handle.classList.add('input-error');
+        shakeElement(F_FIRSTNAME.handle);
     } else {
-        FORM_FIRSTNAME.classList.remove('input-error');
+        F_FIRSTNAME.handle.classList.remove('input-error');
     }
 
-    if (namecheck & (1 << 2) || namecheck & (1 << 3)) {
-        FORM_LASTNAME.classList.add('input-error');
-        shakeElement(FORM_LASTNAME);
+    if (F_LASTNAME.errormask & (1 << 0) || F_LASTNAME.errormask & (1 << 1)) {
+        F_LASTNAME.handle.classList.add('input-error');
+        shakeElement(F_LASTNAME.handle);
     } else {
-        FORM_LASTNAME.classList.remove('input-error');
+        F_LASTNAME.handle.classList.remove('input-error');
     }
 
     /* Email */
-    if (emailcheck != 0) {
-        FORM_EMAIL.classList.add('input-error');
-        shakeElement(FORM_EMAIL);
+    if (F_EMAIL.errormask != 0) {
+        F_EMAIL.handle.classList.add('input-error');
+        shakeElement(F_EMAIL.handle);
     } else {
-        FORM_EMAIL.classList.remove('input-error');
+        F_EMAIL.handle.classList.remove('input-error');
     }
 
     /* message */
-    if (messagecheck != 0) {
-        FORM_MESSAGE.classList.add('input-error');
-        shakeElement(FORM_MESSAGE);
+    if (F_MESSAGE.errormask != 0) {
+        F_MESSAGE.handle.classList.add('input-error');
+        shakeElement(F_MESSAGE.handle);
     }
-        else FORM_MESSAGE.classList.remove('input-error');
+        else F_MESSAGE.handle.classList.remove('input-error');
 }
 
 /* Buttons */
 
 function clearForm() {          // - Clear all form fields after successful submission
     document.getElementById("ffirstname").value = "";
-    FORM_FIRSTNAME.classList.remove('input-error');
-    FORM_FIRSTNAME.classList.remove('input-valid');
+    F_FIRSTNAME.handle.classList.remove('input-error');
+    F_FIRSTNAME.handle.classList.remove('input-valid');
     
     document.getElementById("flastname").value = "";
-    FORM_LASTNAME.classList.remove('input-error');
-    FORM_LASTNAME.classList.remove('input-valid');
+    F_LASTNAME.handle.classList.remove('input-error');
+    F_LASTNAME.handle.classList.remove('input-valid');
 
     document.getElementById("femail").value = "";
-    FORM_EMAIL.classList.remove('input-error');
-    FORM_EMAIL.classList.remove('input-valid');
+    F_EMAIL.handle.classList.remove('input-error');
+    F_EMAIL.handle.classList.remove('input-valid');
     
     document.getElementById("fselect").selectedIndex = 0;
 
     document.getElementById("fmessage").value = "";
-    FORM_MESSAGE.classList.remove('input-error');
-    FORM_MESSAGE.classList.remove('input-valid');
+    F_MESSAGE.handle.classList.remove('input-error');
+    F_MESSAGE.handle.classList.remove('input-valid');
 
     clearAllErrors();
     updateCounter();
 }       
 
 /* Event Listeners */
-FORM_MESSAGE.addEventListener('input', updateCounter);
+F_MESSAGE.handle.addEventListener('input', updateCounter);
 
-FORM_FIRSTNAME.addEventListener('blur', function (e) {
+F_FIRSTNAME.handle.addEventListener('blur', function (e) {
     let errorcheck = validateFirstName();
-    FORM_FIRSTNAME.classList.remove('input-error');
-    FORM_FIRSTNAME.classList.remove('input-valid');
+    F_FIRSTNAME.handle.classList.remove('input-error');
+    F_FIRSTNAME.handle.classList.remove('input-valid');
     
     if (errorcheck & (1 << 0) || errorcheck & (1 << 1)) {
-            FORM_FIRSTNAME.classList.add('input-error');
-            shakeElement(FORM_FIRSTNAME);
+            F_FIRSTNAME.handle.classList.add('input-error');
+            shakeElement(F_FIRSTNAME.handle);
         } else if (errorcheck == 0) {
-            FORM_FIRSTNAME.classList.add('input-valid');
+            F_FIRSTNAME.handle.classList.add('input-valid');
     }
 })
 
-FORM_LASTNAME.addEventListener('blur', function (e) {
+F_LASTNAME.handle.addEventListener('blur', function (e) {
     let errorcheck = validateLastName();
-    FORM_LASTNAME.classList.remove('input-error');
-    FORM_LASTNAME.classList.remove('input-valid');
+    F_LASTNAME.handle.classList.remove('input-error');
+    F_LASTNAME.handle.classList.remove('input-valid');
     
     if (errorcheck & (1 << 2) || errorcheck & (1 << 3)) {
-            FORM_LASTNAME.classList.add('input-error');
-            shakeElement(FORM_LASTNAME);
+            F_LASTNAME.handle.classList.add('input-error');
+            shakeElement(F_LASTNAME.handle);
         } else if (errorcheck == 0) {
-            FORM_LASTNAME.classList.add('input-valid');
+            F_LASTNAME.handle.classList.add('input-valid');
     }
 })
 
-FORM_EMAIL.addEventListener('blur', function (e) {
+F_EMAIL.handle.addEventListener('blur', function (e) {
     let errorcheck = validateEmail();    
     
-    FORM_EMAIL.classList.remove('input-error');
-    FORM_EMAIL.classList.remove('input-valid');
+    F_EMAIL.handle.classList.remove('input-error');
+    F_EMAIL.handle.classList.remove('input-valid');
 
     if (errorcheck != 0) {
-        FORM_EMAIL.classList.add('input-error');
-        shakeElement(FORM_EMAIL);
+        F_EMAIL.handle.classList.add('input-error');
+        shakeElement(F_EMAIL.handle);
     } else {
-        FORM_EMAIL.classList.add('input-valid');
+        F_EMAIL.handle.classList.add('input-valid');
     }
 });
 
-FORM_MESSAGE.addEventListener('blur', function (e) {
+F_MESSAGE.handle.addEventListener('blur', function (e) {
     let errorcheck = validateMessage();
 
-    FORM_MESSAGE.classList.remove('input-error');
-    FORM_MESSAGE.classList.remove('input-valid');
+    F_MESSAGE.handle.classList.remove('input-error');
+    F_MESSAGE.handle.classList.remove('input-valid');
 
     if (errorcheck != 0) {
-        FORM_MESSAGE.classList.add('input-error');
-        shakeElement(FORM_MESSAGE);
+        F_MESSAGE.handle.classList.add('input-error');
+        shakeElement(F_MESSAGE.handle);
     } else {
-        FORM_MESSAGE.classList.add('input-valid');
+        F_MESSAGE.handle.classList.add('input-valid');
     }
 })
 
