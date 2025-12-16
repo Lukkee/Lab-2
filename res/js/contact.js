@@ -208,19 +208,23 @@ function clearForm() {          // - Clear all form fields after successful subm
 F_MESSAGE.handle.addEventListener('input', updateCounter);
 
 F_FIRSTNAME.handle.addEventListener('blur', function (e) {
-
+    validateFirstName();
+    updateElement(F_FIRSTNAME);
 })
 
 F_LASTNAME.handle.addEventListener('blur', function (e) {
-
+    validateLastName();
+    updateElement(F_LASTNAME);
 })
 
 F_EMAIL.handle.addEventListener('blur', function (e) {
-
+    validateEmail();
+    updateElement(F_EMAIL);
 });
 
 F_MESSAGE.handle.addEventListener('blur', function (e) {
-
+    validateMessage();
+    updateElement(F_MESSAGE);
 })
 
 /* Buttons */
