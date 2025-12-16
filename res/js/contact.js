@@ -14,7 +14,7 @@ const cdefault = '#798777';
 const cvalid = '#2ecc71'
 const cerror = '#dc3545';
 
-const errorlist = [];
+let errorlist = [];
 
 /* functions */
 
@@ -26,8 +26,37 @@ function shakeElement(elementHandle) {
 
 /* Validation functions */
 function validateName() {       // - Check if name contains only letters (no numbers or special characters)
+    const firstname = FORM_FIRSTNAME.value.trim();
+    const lastname = FORM_LASTNAME.value.trim();
+    let errorflags = 0;
 
-}       
+    /* Clear previous errors */
+    clearError("First name can not be empty.");
+    clearError("First name must contain only letters.");
+    clearError("Last name can not be empty.");
+    clearError("Last name must contain only letters.");
+
+    /* First name validation */
+    if (firstname === "") {
+        showError("First name can not be empty.");
+        errorflags |= 1 << 0;
+    } else if (!/^[A-Za-z]+$/.test(firstname)) {
+        showError("First name must contain only letters.");
+        errorflags |= 1 << 1;
+    }
+
+    /* Last name validation */
+    if (lastname === "") {
+        showError("Last name can not be empty.");
+        errorflags |= 1 << 2;
+    } else if (!/^[A-Za-z]+$/.test(lastname)) {
+        showError("Last name must contain only letters.");
+        errorflags |= 1 << 3;
+    }
+
+    return errorflags;
+}
+  
 
 function validateEmail() {      // - Check if email format is valid (contains @ and domain)
 
@@ -56,11 +85,11 @@ function showError(errormessage) {          // - Display error message below the
         errorlist.push(errormessage);
         updateErrors();
     }
-    console.log(errorlist);
 }       
 
 function clearError(errormessage) {         // - Remove error message when field is valid
-    if (index = errorlist.indexOf(errormessage)){
+    const index = errorlist.indexOf(errormessage);
+    if (index !== -1) {
         errorlist.splice(index, 1);
         updateErrors();
     }
@@ -96,7 +125,26 @@ function updateErrors() {
 }
 
 function validateForm() {
-    if (validateMessage() != 0) {
+    let namecheck = validateName();
+    let messagecheck = validateMessage();
+
+    /* name */
+    if (namecheck & (1 << 0) || namecheck & (1 << 1)) {
+        FORM_FIRSTNAME.classList.add('input-error');
+        shakeElement(FORM_FIRSTNAME);
+    } else {
+        FORM_FIRSTNAME.classList.remove('input-error');
+    }
+
+    if (namecheck & (1 << 2) || namecheck & (1 << 3)) {
+        FORM_LASTNAME.classList.add('input-error');
+        shakeElement(FORM_LASTNAME);
+    } else {
+        FORM_LASTNAME.classList.remove('input-error');
+    }
+
+    /* message */
+    if (messagecheck != 0) {
         FORM_MESSAGE.classList.add('input-error');
         shakeElement(FORM_MESSAGE);
     }
@@ -107,9 +155,11 @@ function validateForm() {
 
 function clearForm() {          // - Clear all form fields after successful submission
     document.getElementById("ffirstname").value = "";
+    FORM_FIRSTNAME.classList.remove('input-error');
     
     document.getElementById("flastname").value = "";
-    
+    FORM_LASTNAME.classList.remove('input-error');
+
     document.getElementById("femail").value = "";
     
     document.getElementById("fselect").selectedIndex = 0;
@@ -122,10 +172,6 @@ function clearForm() {          // - Clear all form fields after successful subm
 }       
 
 /* Event Listeners */
-FORM_FIRSTNAME.addEventListener("focus", () => {
-    console.log("First name field is highlighted!");
-});
-
 FORM_MESSAGE.addEventListener('input', updateCounter);
 
 /* Buttons */
