@@ -35,9 +35,19 @@ function validateEmail() {      // - Check if email format is valid (contains @ 
 
 function validateMessage() {    // - Check if message is at least 20 characters long
     len = FORM_MESSAGE.value.length;
+
+    clearError("Message can not be empty.");
+    clearError("Message need to be at least 20 characters.")
+
     if (len > 20) return 0;
-        else if (len == 0) return 1;
-        else return 2;
+        else if (len == 0) {
+            showError("Message can not be empty.");
+            return 1;
+        }
+        else {
+            showError("Message need to be at least 20 characters.");
+            return 2;
+        }
 }       
 
 /* Error Handling */
@@ -46,18 +56,21 @@ function showError(errormessage) {          // - Display error message below the
         errorlist.push(errormessage);
         updateErrors();
     }
+    console.log(errorlist);
 }       
 
 function clearError(errormessage) {         // - Remove error message when field is valid
-    index = errorlist.indexOf(errormessage);
-    errorlist.splice(1, index);
-    updateErrors();
+    if (index = errorlist.indexOf(errormessage)){
+        errorlist.splice(index, 1);
+        updateErrors();
+    }
 }
 
 function clearAllErrors() {
     errorlist.length = 0;
     updateErrors();
 }
+
 
 /* Update */
 
@@ -86,7 +99,6 @@ function validateForm() {
     if (validateMessage() != 0) {
         FORM_MESSAGE.classList.add('input-error');
         shakeElement(FORM_MESSAGE);
-        showError("Message need to be at least 20 characters.");
     }
         else FORM_MESSAGE.classList.remove('input-error');
 }
