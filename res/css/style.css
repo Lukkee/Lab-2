@@ -323,6 +323,13 @@ footer {
     background: transparent;
 }
 
+#ferrorlist {
+    list-style: none;
+    color: var(--color-error);
+    padding: 0;
+    margin: 0;
+}
+
 /* Projects */
 .project-card {
     background: linear-gradient(0.45turn, var(--color-accent-mid), var(--color-accent-light));

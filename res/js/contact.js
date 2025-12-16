@@ -7,11 +7,14 @@ const FORM_MESSAGE      =   document.getElementById("fmessage");
 const FORM_SUBMIT       =   document.getElementById("fsubmit");
 const FORM_RESET        =   document.getElementById("freset");
 const FORM_COUNTER      =   document.getElementById("fchar-counter");
+const FORM_ERRORLIST    =   document.getElementById("ferrorlist");
 
 /* Variables */
 const cdefault = '#798777';
 const cvalid = '#2ecc71'
 const cerror = '#dc3545';
+
+const errorlist = [];
 
 /* functions */
 
@@ -38,12 +41,22 @@ function validateMessage() {    // - Check if message is at least 20 characters 
 }       
 
 /* Error Handling */
-function showError() {          // - Display error message below the field
-
+function showError(errormessage) {          // - Display error message below the field
+    if (!errorlist.includes(errormessage)) {
+        errorlist.push(errormessage);
+        updateErrors();
+    }
 }       
 
-function clearError() {         // - Remove error message when field is valid
-    
+function clearError(errormessage) {         // - Remove error message when field is valid
+    index = errorlist.indexOf(errormessage);
+    errorlist.splice(1, index);
+    updateErrors();
+}
+
+function clearAllErrors() {
+    errorlist.length = 0;
+    updateErrors();
 }
 
 /* Update */
@@ -57,10 +70,23 @@ function updateCounter() {
         else FORM_COUNTER.style.color = cvalid;
 }
 
+function updateErrors() {
+    while (FORM_ERRORLIST.firstChild) {
+        FORM_ERRORLIST.removeChild(FORM_ERRORLIST.firstChild);
+    }
+
+    for (let i = 0; i < errorlist.length; i++) {
+        li = document.createElement("li");
+        li.textContent = errorlist[i];
+        FORM_ERRORLIST.appendChild(li);
+    }
+}
+
 function validateForm() {
     if (validateMessage() != 0) {
         FORM_MESSAGE.classList.add('input-error');
         shakeElement(FORM_MESSAGE);
+        showError("Message need to be at least 20 characters.");
     }
         else FORM_MESSAGE.classList.remove('input-error');
 }
@@ -78,6 +104,8 @@ function clearForm() {          // - Clear all form fields after successful subm
 
     document.getElementById("fmessage").value = "";
     FORM_MESSAGE.classList.remove('input-error');
+
+    clearAllErrors();
     updateCounter();
 }       
 
