@@ -16,7 +16,7 @@ const project1 = new project(
     "A Fractal generator made using js and presented in html/css, made as a hobby project. The generator uses L-Systems to generatively produce fractals through multiple generations.",
     "Hobby Project",
     ["Javascript", "HTML", "CSS"],
-    "../res/img/fractal.jpg",
+    "./res/img/fractal.jpg",
     "http://luklun.se/fractal.html"
 );
 
@@ -26,7 +26,7 @@ const project2 = new project(
     "A P5.js web-editor made as a hobby project, using codemirror to let the user input code in a window and view the result in a canvas.",
     "Hobby Project",
     ["Javascript", "HTML", "CSS"],
-    "../res/img/p5.png",
+    "./res/img/p5.png",
     "http://luklun.se/p5editor.html"
 );
 
