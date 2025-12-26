@@ -6,5 +6,6 @@ Entries:
     - Fixa alignment (rent allmänt)
     - Snygga till framsida
     - Lös progress kort i css
+    - Effektivisera setActiveProject() i projects.js
 
 --- end ---

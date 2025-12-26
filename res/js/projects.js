@@ -1,3 +1,11 @@
+//  Define element handles
+const F_ALL = document.getElementById("f_all");
+const F_WEB = document.getElementById("f_web");
+const F_HOBBY = document.getElementById("f_hobby");
+const F_SCHOOL = document.getElementById("f_school");
+const CONTAINER = document.getElementById("projects-container");
+
+//  Project class
 class project {
     constructor(id, title, description, category, technologies, image, link) {
         this.id = id;
@@ -10,11 +18,12 @@ class project {
     }
 }
 
+//  Define projects
 const fractal_project = new project(
     0, 
     "Fractal Generator",
     "A Fractal generator made using js and presented in html/css, made as a hobby project. The generator uses L-Systems to generatively produce fractals through multiple generations.",
-    "Hobby Project",
+    "Web Development",
     ["Javascript", "HTML", "CSS"],
     "./res/img/fractal.jpg",
     "https://github.com/Lukkee/fractal-generation-using-L-systems"
@@ -24,7 +33,7 @@ const p5_project = new project(
     1, 
     "P5.js editor",
     "A P5.js web-editor made as a hobby project, using codemirror to let the user input code in a window and view the result in a canvas.",
-    "Hobby Project",
+    "Web Development",
     ["Javascript", "HTML", "CSS"],
     "./res/img/p5.png",
     "https://github.com/Lukkee/p5-editor-using-codemirror"
@@ -42,22 +51,22 @@ const http_server_project = new project(
 
 const desklet_project = new project(
     3,
-    "Command Desklet for Cinnamon",
+    "Cinnamon Desklet",
     "A simple linux Cinnamon desklet made using js, for showing command outputs in Cinnamon 6.4.X.",
-    "Open Source Hobby Project",
+    "Hobby Project",
     ["Javascript", "JSON"],
     "./res/img/default.png",
     "https://github.com/Lukkee/commands-desklet"
 );
 
-const placeholder_project_1 = new project(
+const portfolio_project = new project(
     4,
-    "Placeholder Project 1",
-    "A placeholder project for demonstration purposes.",
-    "Placeholder",
+    "Personal Portfolio",
+    "A web-based personal portfolio, created for the course DA558A Javascript for web development.",
+    "School Project",
     ["HTML", "CSS", "JavaScript"],
     "./res/img/default.png",
-    "#"
+    "https://github.com/Lukkee/Lab-1"
 );
 
 const placeholder_project_2 = new project(
@@ -70,9 +79,8 @@ const placeholder_project_2 = new project(
     "#"
 );
 
-const projects = [fractal_project, p5_project, http_server_project, desklet_project, placeholder_project_1, placeholder_project_2];
-
-const container = document.getElementById("projects-container");
+const projects = [fractal_project, p5_project, http_server_project, desklet_project, portfolio_project, placeholder_project_2];
+const active_projects = [];
 
 function buildProjectCard(project) {
     const card = document.createElement("div");
@@ -127,9 +135,91 @@ function buildProjectCard(project) {
 }
 
 function loadCards() {
-    for (const project of projects) {
-        container.appendChild(buildProjectCard(project));
+    for (const project of active_projects) {
+        CONTAINER.appendChild(buildProjectCard(project));
     }
 }
 
 loadCards();
+
+function setActiveFilter(category) {
+    // Accept keys like "all", "web", "hobby", "school" or full names.
+    const key = String(category).toLowerCase();
+    console.log(`Setting active filter to: ${key}`);
+
+    // Clear current active projects
+    active_projects.length = 0;
+
+    // Reset active filter class
+    const active_btn = document.getElementsByClassName("active-filter");
+    if (active_btn.length > 0) {
+        active_btn[0].classList.remove("active-filter");
+    }
+
+    // Clear current cards
+    while (CONTAINER.firstChild) {
+        CONTAINER.removeChild(CONTAINER.firstChild);
+    }
+
+    switch (key) {
+        case "all":
+            active_projects.push(...projects);
+            F_ALL.classList.add("active-filter");
+            break;
+
+        case "web":
+            for (const project of projects) {
+                if (project.category === "Web Development") {
+                    active_projects.push(project);
+                }
+            }
+            F_WEB.classList.add("active-filter");
+            break;
+            
+        case "hobby":
+            for (const project of projects) {
+                if (project.category === "Hobby Project") {
+                    active_projects.push(project);
+                }
+            }
+            F_HOBBY.classList.add("active-filter");
+            break;
+
+        case "school":
+            for (const project of projects) {
+                if (project.category === "School Project") {
+                    active_projects.push(project);
+                }
+            }
+            F_SCHOOL.classList.add("active-filter");
+            break;
+
+        default:
+            console.log(`Unknown filter category: ${category}`);
+            return;
+    }
+
+    loadCards();
+}
+
+F_ALL.addEventListener("click", function (e) {
+    e.preventDefault();
+    setActiveFilter("all");
+});
+
+F_WEB.addEventListener("click", function (e) {
+    e.preventDefault();
+    setActiveFilter("web");
+});
+
+F_HOBBY.addEventListener("click", function (e) {
+    e.preventDefault();
+    setActiveFilter("hobby");
+});
+
+F_SCHOOL.addEventListener("click", function (e) {
+    e.preventDefault();
+    setActiveFilter("school");
+});
+
+setActiveFilter("all");
