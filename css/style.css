@@ -228,9 +228,9 @@ footer {
     mask-position: center;
 }
 
-.github-link { mask-image: url('../img/github.png'); }
-.linkedin-link { mask-image: url('../img/linkedin.png'); }
-.facebook-link { mask-image: url('../img/facebook.png'); }
+.github-link { mask-image: url('../images/github.png'); }
+.linkedin-link { mask-image: url('../images/linkedin.png'); }
+.facebook-link { mask-image: url('../images/facebook.png'); }
 
 /* Contact form */
 .contact-form {

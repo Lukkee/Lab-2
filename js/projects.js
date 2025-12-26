@@ -25,7 +25,7 @@ const fractal_project = new project(
     "A Fractal generator made using js and presented in html/css, made as a hobby project. The generator uses L-Systems to generatively produce fractals through multiple generations.",
     "Web Development",
     ["Javascript", "HTML", "CSS"],
-    "./res/img/fractal.jpg",
+    "./images/fractal.jpg",
     "https://github.com/Lukkee/fractal-generation-using-L-systems"
 );
 
@@ -35,7 +35,7 @@ const p5_project = new project(
     "A P5.js web-editor made as a hobby project, using codemirror to let the user input code in a window and view the result in a canvas.",
     "Web Development",
     ["Javascript", "HTML", "CSS"],
-    "./res/img/p5.png",
+    "./images/p5.png",
     "https://github.com/Lukkee/p5-editor-using-codemirror"
 );
 
@@ -45,7 +45,7 @@ const http_server_project = new project(
     "A simple HTTP server made using C, with ARPA and INET libraries. Made as a hobby project to learn more about networking and HTTP protocol as well as host local projects.",
     "Hobby Project",
     ["C", "ARPA", "INET", "HTTP"],
-    "./res/img/default.png",
+    "./images/default.png",
     "https://github.com/Lukkee/HTTP-server"
 );
 
@@ -55,7 +55,7 @@ const desklet_project = new project(
     "A simple linux Cinnamon desklet made using js, for showing command outputs in Cinnamon 6.4.X.",
     "Hobby Project",
     ["Javascript", "JSON"],
-    "./res/img/default.png",
+    "./images/default.png",
     "https://github.com/Lukkee/commands-desklet"
 );
 
@@ -65,7 +65,7 @@ const portfolio_project = new project(
     "A web-based personal portfolio, created for the course DA558A Javascript for web development.",
     "School Project",
     ["HTML", "CSS", "JavaScript"],
-    "./res/img/default.png",
+    "./images/default.png",
     "https://github.com/Lukkee/Lab-1"
 );
 
@@ -75,7 +75,7 @@ const placeholder_project_2 = new project(
     "Another placeholder project for demonstration purposes.",
     "Placeholder",
     ["Python", "Flask"],
-    "./res/img/default.png",
+    "./images/default.png",
     "#"
 );
 
