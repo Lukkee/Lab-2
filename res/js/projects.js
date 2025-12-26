@@ -50,7 +50,27 @@ const desklet_project = new project(
     "https://github.com/Lukkee/commands-desklet"
 );
 
-const projects = [fractal_project, p5_project, http_server_project, desklet_project];
+const placeholder_project_1 = new project(
+    4,
+    "Placeholder Project 1",
+    "A placeholder project for demonstration purposes.",
+    "Placeholder",
+    ["HTML", "CSS", "JavaScript"],
+    "./res/img/default.png",
+    "#"
+);
+
+const placeholder_project_2 = new project(
+    5,
+    "Placeholder Project 2",
+    "Another placeholder project for demonstration purposes.",
+    "Placeholder",
+    ["Python", "Flask"],
+    "./res/img/default.png",
+    "#"
+);
+
+const projects = [fractal_project, p5_project, http_server_project, desklet_project, placeholder_project_1, placeholder_project_2];
 
 const container = document.getElementById("projects-container");
 
