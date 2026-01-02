@@ -358,6 +358,13 @@ footer {
     border-color: var(--color-accent-dark);
 }
 
+.filter-text {
+    display: flex;
+    justify-self: center;
+    margin: 0;
+    padding: 0;
+}
+
 .projects-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

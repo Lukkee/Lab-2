@@ -4,6 +4,7 @@ const F_WEB = document.getElementById("f_web");
 const F_HOBBY = document.getElementById("f_hobby");
 const F_SCHOOL = document.getElementById("f_school");
 const CONTAINER = document.getElementById("projects-container");
+const F_TEXT = document.getElementById("f_text");
 
 //  Project class
 class project {
@@ -79,8 +80,11 @@ const placeholder_project_2 = new project(
     "#"
 );
 
+//  Handle project arrays
 const projects = [fractal_project, p5_project, http_server_project, desklet_project, portfolio_project, placeholder_project_2];
 const active_projects = [];
+let projects_len = projects.length;
+let active_projects_len = projects.length;
 
 function buildProjectCard(project) {
     const card = document.createElement("div");
@@ -135,9 +139,11 @@ function buildProjectCard(project) {
 }
 
 function loadCards() {
+    active_projects_len = active_projects.length;
     for (const project of active_projects) {
         CONTAINER.appendChild(buildProjectCard(project));
     }
+    F_TEXT.textContent = `Showing ${active_projects_len} / ${projects_len} projects!`
 }
 
 loadCards();
