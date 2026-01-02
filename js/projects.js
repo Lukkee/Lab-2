@@ -46,7 +46,7 @@ const http_server_project = new project(
     "A simple HTTP server made using C, with ARPA and INET libraries. Made as a hobby project to learn more about networking and HTTP protocol as well as host local projects.",
     "hobby",
     ["C", "ARPA", "INET", "HTTP"],
-    "./images/default.png",
+    "./images/httpserver.png",
     "https://github.com/Lukkee/HTTP-server"
 );
 
@@ -67,25 +67,24 @@ const portfolio_project = new project(
     "A web-based personal portfolio, created for the course DA558A Javascript for web.",
     "school",
     ["HTML", "CSS", "JavaScript"],
-    "./images/default.png",
+    "./images/portfolio.png",
     "https://github.com/Lukkee/Lab-1"
 );
 
-const placeholder_project_2 = new project(
+const soundcard_project = new project(
     5,
-    "Placeholder Project 2",
-    "Another placeholder project for demonstration purposes.",
-    "Placeholder",
-    ["Python", "Flask"],
-    "./images/default.png",
-    "#"
+    "DAQ Soundcard",
+    "A program to use DAQ as a soundcard to read and write analog audio signals.",
+    "school",
+    ["C", "DAQ", "LabWindows/CVI"],
+    "./images/soundcard.png",
+    "https://github.com/Lukkee/DAQSoundcard"
 );
 
 //  Handle project arrays
-const projects = [fractal_project, p5_project, http_server_project, desklet_project, portfolio_project, placeholder_project_2];
+const projects = [fractal_project, p5_project, http_server_project, desklet_project, portfolio_project, soundcard_project];
 const active_projects = [];
 let projects_len = projects.length;
-let active_projects_len = projects.length;
 
 function buildProjectCard(project) {
     const card = document.createElement("div");
@@ -138,14 +137,12 @@ function buildProjectCard(project) {
 }
 
 function loadCards() {
-    active_projects_len = active_projects.length;
+    let active_projects_len = active_projects.length;
     for (const project of active_projects) {
         CONTAINER.appendChild(buildProjectCard(project));
     }
     F_TEXT.textContent = `Showing ${active_projects_len} / ${projects_len} projects!`
 }
-
-loadCards();
 
 function setActiveFilter(category) {
     // Clear active projects
