@@ -24,7 +24,7 @@ const fractal_project = new project(
     0, 
     "Fractal Generator",
     "A Fractal generator made using js and presented in html/css, made as a hobby project. The generator uses L-Systems to generatively produce fractals through multiple generations.",
-    "Web Development",
+    "web",
     ["Javascript", "HTML", "CSS"],
     "./images/fractal.jpg",
     "https://github.com/Lukkee/fractal-generation-using-L-systems"
@@ -34,7 +34,7 @@ const p5_project = new project(
     1, 
     "P5.js editor",
     "A P5.js web-editor made as a hobby project, using codemirror to let the user input code in a window and view the result in a canvas.",
-    "Web Development",
+    "web",
     ["Javascript", "HTML", "CSS"],
     "./images/p5.png",
     "https://github.com/Lukkee/p5-editor-using-codemirror"
@@ -44,7 +44,7 @@ const http_server_project = new project(
     2,
     "Simple HTTP Server",
     "A simple HTTP server made using C, with ARPA and INET libraries. Made as a hobby project to learn more about networking and HTTP protocol as well as host local projects.",
-    "Hobby Project",
+    "hobby",
     ["C", "ARPA", "INET", "HTTP"],
     "./images/default.png",
     "https://github.com/Lukkee/HTTP-server"
@@ -54,17 +54,18 @@ const desklet_project = new project(
     3,
     "Cinnamon Desklet",
     "A simple linux Cinnamon desklet made using js, for showing command outputs in Cinnamon 6.4.X.",
-    "Hobby Project",
+    "hobby",
     ["Javascript", "JSON"],
     "./images/default.png",
     "https://github.com/Lukkee/commands-desklet"
 );
 
+
 const portfolio_project = new project(
     4,
     "Personal Portfolio",
-    "A web-based personal portfolio, created for the course DA558A Javascript for web development.",
-    "School Project",
+    "A web-based personal portfolio, created for the course DA558A Javascript for web.",
+    "school",
     ["HTML", "CSS", "JavaScript"],
     "./images/default.png",
     "https://github.com/Lukkee/Lab-1"
@@ -122,8 +123,6 @@ function buildProjectCard(project) {
     // Link
     const link = document.createElement("a");
     link.href = project.link;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
     link.textContent = "View Project";
     link.classList.add("project-link");
 
@@ -149,83 +148,39 @@ function loadCards() {
 loadCards();
 
 function setActiveFilter(category) {
-    // Accept keys like "all", "web", "hobby", "school" or full names.
-    const key = String(category).toLowerCase();
-    console.log(`Setting active filter to: ${key}`);
-
-    // Clear current active projects
+    // Clear active projects
     active_projects.length = 0;
 
-    // Reset active filter class
-    const active_btn = document.getElementsByClassName("active-filter");
-    if (active_btn.length > 0) {
-        active_btn[0].classList.remove("active-filter");
+    // Remove active class
+    document.querySelector(".active-filter")?.classList.remove("active-filter");
+
+    // Clear cards
+    CONTAINER.innerHTML = "";
+
+    // Filter projects
+    if (category === "all") {
+        active_projects.push(...projects);
+    } else {
+        active_projects.push(
+            ...projects.filter(p => p.category === category)
+        );
     }
 
-    // Clear current cards
-    while (CONTAINER.firstChild) {
-        CONTAINER.removeChild(CONTAINER.firstChild);
-    }
-
-    switch (key) {
-        case "all":
-            active_projects.push(...projects);
-            F_ALL.classList.add("active-filter");
-            break;
-
-        case "web":
-            for (const project of projects) {
-                if (project.category === "Web Development") {
-                    active_projects.push(project);
-                }
-            }
-            F_WEB.classList.add("active-filter");
-            break;
-            
-        case "hobby":
-            for (const project of projects) {
-                if (project.category === "Hobby Project") {
-                    active_projects.push(project);
-                }
-            }
-            F_HOBBY.classList.add("active-filter");
-            break;
-
-        case "school":
-            for (const project of projects) {
-                if (project.category === "School Project") {
-                    active_projects.push(project);
-                }
-            }
-            F_SCHOOL.classList.add("active-filter");
-            break;
-
-        default:
-            console.log(`Unknown filter category: ${category}`);
-            return;
-    }
+    // Set active button
+    document
+        .querySelector(`[data-category="${category}"]`)
+        .classList.add("active-filter");
 
     loadCards();
 }
 
-F_ALL.addEventListener("click", function (e) {
-    e.preventDefault();
-    setActiveFilter("all");
-});
 
-F_WEB.addEventListener("click", function (e) {
-    e.preventDefault();
-    setActiveFilter("web");
-});
-
-F_HOBBY.addEventListener("click", function (e) {
-    e.preventDefault();
-    setActiveFilter("hobby");
-});
-
-F_SCHOOL.addEventListener("click", function (e) {
-    e.preventDefault();
-    setActiveFilter("school");
+document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", e => {
+        e.preventDefault();
+        const category = btn.dataset.category;
+        setActiveFilter(category);
+    });
 });
 
 setActiveFilter("all");
