@@ -12,12 +12,19 @@
     <header>
         <nav class="navbar">
             <a href="./index.html"><h1 class="title">Lukas Lundin</h1></a>
-            <ul class="navlist">
-                <a class="navbutton" href="./index.html">Home</a>
-                <a class="navbutton" href="./about.html">About</a>
-                <a class="navbutton current" href="./projects.html">Projects</a>
-                <a class="navbutton" href="./contact.html">Contact</a>
-            </ul>
+            <div class="nav-right">
+                <ul class="navlist">
+                    <a class="navbutton" href="./index.html">Home</a>
+                    <a class="navbutton" href="./about.html">About</a>
+                    <a class="navbutton current" href="./projects.html">Projects</a>
+                    <a class="navbutton" href="./contact.html">Contact</a>
+                </ul>
+                <ul class="theme-buttons">
+                    <img class="theme-button current" id="lighttheme" src="./images/sun.png">
+                    <img class="theme-button" id="darktheme"src="./images/moon.png">
+                    <img class="theme-button" id="greentheme"src="./images/flower.png">
+                </ul>
+            </div>
         </nav>
     </header>
 
@@ -63,5 +70,6 @@
     </footer>
 
     <script src="./js/projects.js"></script>
+    <script src="./js/theme.js"></script>
     </body>
 </html>

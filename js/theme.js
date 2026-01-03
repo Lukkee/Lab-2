@@ -35,6 +35,8 @@ function ChangeTheme(theme) {
     }
 }
 
+ChangeTheme("light");
+
 LIGHTBTN.addEventListener("click", function (e) {
     e.preventDefault();
     ChangeTheme("light");
