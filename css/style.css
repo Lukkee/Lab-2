@@ -19,27 +19,37 @@
 
 body.light {
     --color-bg: #FFFFFF;
-    --color-text-light: #FFFFFF;
-    --color-text-dark: #484848;
     --color-accent-light: #e4e5f1;
     --color-accent-mid: #9394a5;
     --color-accent-dark: #484b6a;
+
+    --color-text-hc: #FFFFFF;
+    --color-text-light: #e4e5f1;
+    --color-text-dark: #484b6a;
+    --color-text-solid: #000000;
 }
 
 body.dark {
     --color-bg: #1e1e1e;
     --color-accent-light: #2d2d30;
     --color-accent-mid: #3e3e42;
-    --color-accent-dark: #FFFFFF;
+    --color-accent-dark: #252526;
+
+    --color-text-hc: #e4e5f1;
+    --color-text-light: #e4e5f1;
+    --color-text-dark: #313c6b;
+    --color-text-solid: #488d99;
 }
 
 body.green {
     --color-bg: #F8EDE3;
-    --color-text-light: #FFFFFF;
-    --color-text-dark: #484848;
     --color-accent-light: #BDD2B6;
     --color-accent-mid: #A2B29F;
     --color-accent-dark: #798777;
+
+    --color-text-hc: #F8EDE3;
+    --color-text-light: #BDD2B6;
+    --color-text-dark: #798777;
 }
 
 /* Container */
@@ -62,11 +72,12 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0;
+    color: var(--color-text-solid);
 }
 
 a {
     text-decoration: none;
-    color: black;
+    color: var(--color-text-solid);
 }
 
 @keyframes sizeup {
@@ -100,6 +111,7 @@ a {
     background-color: var(--color-accent-dark);
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .navbar a {
@@ -117,15 +129,14 @@ a {
 }
 
 .title {
-    justify-self: left;
     font-size: var(--font-size-lg);
     margin-left: 10rem;
-    color: var(--color-accent-light);
+    color: var(--color-text-light);
 }
 
 .navbutton {
     font-size: large;
-    color: var(--color-bg);
+    color: var(--color-text-hc);
     margin: 1rem;
 }
 
@@ -172,13 +183,13 @@ a {
 }
 
 .hero-text-container h1 {
-    color: var(--color-accent-dark);
+    color: var(--color-text-dark);
     margin: 0;
     font-size: var(--font-size-xl);
 }
 
 .hero-text-container h3 {
-    color: var(--color-accent-dark);
+    color: var(--color-text-dark);
     margin: 0;
     font-size: var(--font-size-lg);
 }
@@ -258,7 +269,7 @@ footer {
 }
 
 .footer-footer a {
-    color: var(--color-bg);
+    color: var(--color-text-hc);
     text-decoration: none;
 }
 
@@ -298,7 +309,7 @@ footer {
 
 .footer-container h3,
 .footer-container p {
-    color: var(--color-bg);
+    color: var(--color-text-hc);
     text-align: center;
 }
 
@@ -366,7 +377,7 @@ footer {
     bottom: 0.4rem;
     right: 0.6rem;
     font-size: 0.75rem;
-    color: var(--color-accent-dark);
+    color: var(--color-text-dark);
     pointer-events: none; /* prevents cursor interference */
     background: transparent;
 }
@@ -402,7 +413,7 @@ footer {
 
 .active-filter {
     background: var(--color-accent-light);
-    color: white;
+    color: var(--color-text-dark);
     border-color: var(--color-accent-dark);
 }
 
@@ -459,14 +470,14 @@ footer {
 .project-card h3 {
     margin: 0;
     font-size: 1.1rem;
-    color: var(--color-accent-dark);
+    color: var(--color-text-dark);
 }
 
 /* Project Category */
 .project-card .project-category,
 .project-card span {
     font-size: 0.85rem;
-    color: var(--color-accent-dark);
+    color: var(--color-text-dark);
     opacity: 0.85;
 }
 
@@ -494,7 +505,7 @@ footer {
     padding: 0.25rem 0.5rem;
     border-radius: 999px;
     font-size: 0.75rem;
-    color: var(--color-accent-dark);
+    color: var(--color-text-dark);
 }
 
 /* Project Link (button) */
@@ -503,7 +514,7 @@ footer {
     align-self: flex-start;
     padding: 0.45rem 0.9rem;
     background: linear-gradient(90deg, var(--color-accent-dark), var(--color-accent-mid));
-    color: var(--color-bg);
+    color: var(--color-text-hc);
     border-radius: 999px;
     text-decoration: none;
     box-shadow: 0 6px 12px rgba(0,0,0,0.06);
@@ -587,7 +598,7 @@ footer {
 }
 
 .about-section h4 {
-    color: var(--color-accent-dark);
+    color: var(--color-text-dark);
     margin: 0.5rem 0;
 }
 
@@ -654,7 +665,7 @@ footer {
 
 .contact-box a {
     text-decoration: underline;
-    color: var(--color-accent-dark);
+    color: var(--color-text-dark);
 }
 
 .email-box {
@@ -668,7 +679,7 @@ footer {
 
 .contact-info a {
     text-decoration: underline;
-    color: var(--color-accent-dark);
+    color: var(--color-text-dark);
 }
 
 /* MEDIA QUERIES */
