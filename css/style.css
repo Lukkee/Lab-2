@@ -1,11 +1,5 @@
 /* Root */
 :root {
-    /* Colors */
-    --color-bg: #F8EDE3;
-    --color-accent-light: #BDD2B6;
-    --color-accent-mid: #A2B29F;
-    --color-accent-dark: #798777;
-
     /* Borders */
     --radius-sm: 0.5rem;
     --radius-lg: 2rem;
@@ -21,6 +15,31 @@
     --font-size-xl: 3rem;
     --font-size-lg: 2rem;
     --font-size-md: 1rem;
+}
+
+body.light {
+    --color-bg: #FFFFFF;
+    --color-text-light: #FFFFFF;
+    --color-text-dark: #484848;
+    --color-accent-light: #e4e5f1;
+    --color-accent-mid: #9394a5;
+    --color-accent-dark: #484b6a;
+}
+
+body.dark {
+    --color-bg: #1e1e1e;
+    --color-accent-light: #2d2d30;
+    --color-accent-mid: #3e3e42;
+    --color-accent-dark: #FFFFFF;
+}
+
+body.green {
+    --color-bg: #F8EDE3;
+    --color-text-light: #FFFFFF;
+    --color-text-dark: #484848;
+    --color-accent-light: #BDD2B6;
+    --color-accent-mid: #A2B29F;
+    --color-accent-dark: #798777;
 }
 
 /* Container */
@@ -87,12 +106,18 @@ a {
     text-decoration: none;
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
 .navlist {
     display: flex;
-    margin-right: 6rem;
+    margin-right: 0;
 }
 
 .title {
+    justify-self: left;
     font-size: var(--font-size-lg);
     margin-left: 10rem;
     color: var(--color-accent-light);
@@ -106,6 +131,29 @@ a {
 
 .navbutton.current {
     border-bottom: 2px solid var(--color-bg);
+}
+
+.theme-buttons {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.theme-button{
+    width: 2rem;
+    height: 2rem;
+    margin: 0.2rem;
+}
+
+.theme-button.current {
+    filter: brightness(0) saturate(100%) invert(1);
+}
+
+.theme-button:hover {
+    transform: scale(1.1);
+    cursor: pointer ;
 }
 
 /* Hero */
@@ -630,7 +678,19 @@ footer {
 
     .navbar {
         flex-direction: column;
+        align-items: center;
         text-align: center;
+    }
+
+    .nav-right {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .theme-buttons {
+        flex-direction: row;
+        margin-bottom: 1rem;
+        justify-content: center;
     }
 
     .title {
