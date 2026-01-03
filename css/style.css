@@ -37,8 +37,8 @@ body.dark {
 
     --color-text-hc: #e4e5f1;
     --color-text-light: #e4e5f1;
-    --color-text-dark: #313c6b;
-    --color-text-solid: #488d99;
+    --color-text-dark: #9c9c9c;
+    --color-text-solid: #7d7d7d;
 }
 
 body.green {
@@ -542,25 +542,26 @@ footer {
 }
 
 .skill {
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
 }
 
-.stars::before { /* creates a pseudo-element before the empty div */
-    content: "★★★★★";
-    letter-spacing: 3px;
-    font-size: 1.4rem;
-    background: linear-gradient(
-        to right,
-        var(--color-accent-dark) calc(var(--rating) * 20%),
-        var(--color-accent-light) calc(var(--rating) * 20%)
-    );
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+.stars {
+    display: flex;
+    font-size: var(--font-size-lg);
+    color: var(--color-text-light);
+    margin-left: 1rem;
 }
 
-.stars {
-    --rating: attr(data-rating number); /* Stores variable stars as a number */
-    margin-left: 2rem;
+.stars .filled {
+    color: var(--color-text-dark);
+    opacity: 1;
+}
+
+.stars .unfilled {
+    color: var(--color-text-solid);
+    opacity: 0.3;
 }
 
 .skills-experience-section {
