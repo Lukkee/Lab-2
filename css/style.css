@@ -23,34 +23,6 @@
     --font-size-md: 1rem;
 }
 
-/* Container */
-.page-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    box-sizing: border-box;
-}
-
-.flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-body {
-    background-color: var(--color-bg);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    color: var(--color-text-solid);
-}
-
-a {
-    text-decoration: none;
-    color: var(--color-text-solid);
-}
-
 @keyframes sizeup {
     from {
         transform: scale(1.0);
@@ -75,6 +47,76 @@ a {
     60%  { transform: translateX(-5px); }
     80%  { transform: translateX(5px); }
     100% { transform: translateX(0); }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { 
+        background-color: transparent; 
+    }
+    to { 
+        background-color: var(--color-bg); 
+    }
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    animation: pageEnter 450ms ease forwards;
+    background-color: var(--color-bg);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    color: var(--color-text-solid);
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-text-solid);
+}
+
+/* Animation classes */
+.fade {
+    opacity: 0;
+    animation: fadeUp 500ms ease forwards;
+}
+
+.fadein {
+    animation: fadeIn 400ms ease forwards;
+}
+
+/* Container */
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
 }
 
 /* Header */
@@ -488,7 +530,7 @@ footer {
     padding: 0.25rem 0.5rem;
     border-radius: 999px;
     font-size: 0.75rem;
-    color: var(--color-text-light);
+    color: var(--color-text-hc);
 }
 
 /* Project Link (button) */

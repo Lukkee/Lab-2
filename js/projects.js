@@ -89,6 +89,7 @@ let projects_len = projects.length;
 function buildProjectCard(project) {
     const card = document.createElement("div");
     card.classList.add("project-card");
+    card.classList.add("fade");
 
     // Image
     const img = document.createElement("img");
