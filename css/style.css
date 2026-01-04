@@ -6,6 +6,7 @@
     --radius-sm: 0.5rem;
     --radius-lg: 2rem;
     --border-standard: 2px solid var(--color-accent-dark);
+    --border-lg: 4px solid var(--color-accent-dark);
     --border-thin: 1px solid var(--color-accent-dark);
     --box-shadow-sm: 0 0 10px rgba(0, 0, 0, 0.5);
     --box-shadow-xs: 0 6px 18px rgba(0, 0, 0, 0.06);
@@ -277,16 +278,19 @@ footer {
     border: var(--border-standard);
 }
 
-.footer-container h3,
-.footer-container p {
-    color: var(--color-text-hc);
-    text-align: center;
-}
-
 .contact-form input, select, textarea, button {
     border-radius: 5px;
     border: 2px solid var(--color-default);
     resize: none;
+    background-color: var(--color-text-hc);
+}
+
+.contact-form button {
+    margin: 0.1rem;
+}
+
+.contact-form button:hover {
+    transform: scale(1.075);
 }
 
 .contact-form input:focus, select:focus, textarea:focus {
@@ -350,6 +354,19 @@ footer {
     color: var(--color-text-dark);
     pointer-events: none; /* prevents cursor interference */
     background: transparent;
+}
+
+.successmessage {
+    padding: 3rem;
+    color: var(--color-valid);
+    background-color: var(--color-bg);
+    border: var(--border-lg);
+    box-shadow: var(--box-shadow-xs);
+    border-radius: 1rem;
+    display: flex;
+    position: absolute;
+    justify-self: center;
+    align-self: center;
 }
 
 #ferrorlist {

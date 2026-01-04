@@ -149,6 +149,7 @@ function successMessage() {         // Sends success message
     let name = F_FIRSTNAME.handle.value.trim();
     let message = document.createElement("h4");
     message.textContent = `Thank you ${name}! I will contact you soon!`;
+    message.classList.add("successmessage");
     F_SUCCESSCONTAINER.appendChild(message);
     clearForm();
     setTimeout( () => {

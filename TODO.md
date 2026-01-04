@@ -7,7 +7,6 @@ Entries:
     - Lägg till animationer för projectkort
     - Animationer för inladdning av sidan
     - border-radius calc(var(--radius-lg) - 0.5rem); på andra element
-    - Knappar i form
 
     - Kolla över att alla funktioner fungerar
 
