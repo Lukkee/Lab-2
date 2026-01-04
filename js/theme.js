@@ -33,9 +33,30 @@ function ChangeTheme(theme) {
         default:
             break;
     }
+
+    saveTheme(theme);
 }
 
-ChangeTheme("light");
+function LoadThemeFromCookies() {
+    const cookies = document.cookie.split(';');
+    
+    for (let i = 0; i < cookies.length; i++) {
+        const c = cookies[i].trim();
+    
+        if (c.startsWith('selectedTheme=')) {
+            theme = c.substring('selectedTheme='.length);
+            ChangeTheme(theme);
+            
+            return;
+        }
+    }
+
+    LIGHTBTN.classList.add('current');
+}
+
+function saveTheme(theme) {
+    document.cookie = "selectedTheme="+theme+";max-age="+(60*60*24*30);
+}
 
 LIGHTBTN.addEventListener("click", function (e) {
     e.preventDefault();
@@ -50,4 +71,9 @@ DARKBTN.addEventListener("click", function (e) {
 GREENBTN.addEventListener("click", function (e) {
     e.preventDefault();
     ChangeTheme("green");
+});
+
+/* This runs purely to change the theme button style, recursive but functional */
+window.addEventListener('load', function() {
+    LoadThemeFromCookies();
 });

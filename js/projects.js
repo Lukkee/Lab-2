@@ -136,6 +136,7 @@ function buildProjectCard(project) {
     return card;
 }
 
+//  Load active cards
 function loadCards() {
     let active_projects_len = active_projects.length;
     for (const project of active_projects) {
@@ -144,6 +145,7 @@ function loadCards() {
     F_TEXT.textContent = `Showing ${active_projects_len} / ${projects_len} projects!`
 }
 
+//  Change filter
 function setActiveFilter(category) {
     // Clear active projects
     active_projects.length = 0;

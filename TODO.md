@@ -10,9 +10,8 @@ Entries:
     - Lägg till animationer för projectkort
     - Animationer för inladdning av sidan
     - Ändra HTML-format för temaknappar (enligt requirements pdf)
-    - Flytta teman till egen css fil och importera
-    - Lägg till funktionalitet för att spara teman
     - border-radius calc(var(--radius-lg) - 0.5rem); på andra element
+    - Knappar i form
 
     - Kolla över att alla funktioner fungerar
 
