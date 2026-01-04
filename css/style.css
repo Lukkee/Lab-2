@@ -20,6 +20,7 @@
     /* Sizes */
     --font-size-xl: 3rem;
     --font-size-lg: 2rem;
+    --font-size-ml: 1.5rem;
     --font-size-md: 1rem;
 }
 
@@ -203,8 +204,10 @@ a {
 
 .hero-text-container h3 {
     color: var(--color-text-dark);
+    opacity: 0.8;
     margin: 0;
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-ml);
+    font-style: italic;
 }
 
 .separator {
