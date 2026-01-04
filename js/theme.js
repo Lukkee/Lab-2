@@ -58,19 +58,12 @@ function saveTheme(theme) {
     document.cookie = "selectedTheme="+theme+";max-age="+(60*60*24*30);
 }
 
-LIGHTBTN.addEventListener("click", function (e) {
-    e.preventDefault();
-    ChangeTheme("light");
-});
-
-DARKBTN.addEventListener("click", function (e) {
-    e.preventDefault();
-    ChangeTheme("dark");
-});
-
-GREENBTN.addEventListener("click", function (e) {
-    e.preventDefault();
-    ChangeTheme("green");
+document.querySelectorAll(".theme-button").forEach(btn => {
+    btn.addEventListener("click", e => {
+        e.preventDefault();
+        const theme = btn.dataset.theme;
+        ChangeTheme(theme);
+    });
 });
 
 /* This runs purely to change the theme button style, recursive but functional */
