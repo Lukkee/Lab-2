@@ -216,6 +216,73 @@ a {
     margin: 2rem auto;
 }
 
+.hero-buttons {
+    display: flex;
+    justify-content: left;
+    padding: 0;
+}
+
+.hero-button {
+    background-color: var(--color-accent-light);
+    color: var(--color-text-dark);
+    margin-right: 2rem;
+    padding: 0.5rem;
+    border: var(--border-lg);
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow-xs);
+}
+
+.hero-button:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: var(--box-shadow-sm);
+}
+
+/* Hero on homepage */
+.hero-text-container.homepage {
+    margin: 4rem 2rem;
+}
+
+/* Homepage projects */
+.homepage-projects-title {
+    display: flex;
+    justify-self: center;
+    font-size: var(--font-size-lg);
+    color: var(--color-text-dark);
+}
+
+.homepage-project-cards {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.homepage-project-cards h2 {
+    color: var(--color-text-hc);
+    justify-self: left;
+    padding: 0.5rem 1rem;
+    border: var(--border-standard);
+    border-radius: 2rem;
+    background-color: var(--color-accent-dark);
+}
+
+.homepage-project {
+    display: flex;
+    flex-direction: row;
+}
+
+.homepage-project img {
+    width: 16rem;
+}
+
+.homepage-project-text {
+    margin: 0 1rem;
+}
+
+.see-more {
+    text-decoration: underline;
+}
+
+
 /* Timeline */
 .timeline-container {
     text-align: center;
@@ -716,6 +783,14 @@ footer {
 /* max-width: 600px */
 @media (max-width: 600px) { /* when navbar becomes cramped */
 
+    .hero-container {
+        flex-direction: column;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+    
     .navbar {
         flex-direction: column;
         align-items: center;
@@ -850,5 +925,9 @@ footer {
     .project-card {
         flex-direction: column;
         align-items: center;
+    }
+
+    .homepage-project-cards {
+    flex-direction: column;
     }
 }

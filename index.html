@@ -33,98 +33,50 @@
         <!-- Hero -->
         <section class="hero-container flex-center">
             <div class="hero-image-container">
-                <img src="./images/icon.png" alt="Portrait picture of myself" class="hero-image">
+                <img src="./images/me.png" alt="Portrait picture of myself" class="hero-image">
             </div>
-            <div class="hero-text-container">
+            <div class="hero-text-container homepage">
+                <h1>Hello! I'm</h1>
                 <h1>Lukas Lundin</h1>
-                <h3>Computer Engineering Student</h3>
+                <p>Welcome to my personal portfolio!
+                    I am currently studying Computer Engineering at Chalmers University of Technology.
+                    In this portfolio you can find my projects, experiences and contact form among other things.
+                </p>
+                <ul class="hero-buttons">
+                    <a href="./about.html" class="hero-button">About me!</a>
+                    <a href="./contact.html" class="hero-button">Contact me!</a>
+                </ul>
             </div>
         </section>
         <hr class="separator">
-
-        <!-- Timeline -->
-        <section class="timeline-container">
-            <h2>Timeline</h2>
-            <ul class="timeline">
-                <div class="timeline-card">
-                    <h3>2020</h3>
-                    <p>Started programming as a hobby, mainly using Python, and simpler web-based interfaces.</p>
-                </div>
-                <div class="timeline-card">
-                    <h3>2023</h3>
-                    <p>Started studying computer engineering at Chalmers University of Technology.</p>
-                </div>
-                <div class="timeline-card">
-                    <h3>2024</h3>
-                    <p>Took a break from my studies to do 15 months of military service, working with data communications.</p>
-                </div>
-                <div class="timeline-card current">
-                    <h3>2025</h3>
-                    <p>Taking a variety of courses to widen my skills and portfolio.</p>
-                </div>
-                <div class="timeline-card future">
-                    <h3>2026</h3>
-                    <p>Continuing studies at Chalmers from january 2026.</p>
-                </div>
-            </ul>
-        </section>
-        <hr class="separator">
-
-        <!-- Skills and projects-->
-        <section class="skills-container">
-            <h2>Skills and Projects</h2>
-            <div class="splitsection">
-
-                <!-- Skills -->
-                <div class="skills-box">
-                    <section class="skills-section">
-                        <h2>Languages</h2>
-                        <hr class="separator">
-                                <div class="skill flex-center">
-                                    <h3>HTML</h3>
-                                    <div class="stars"><p class="filled">★★</p><p class="unfilled">★★★</p></div>
-                                </div>
-                                <div class="skill flex-center">
-                                    <h3>CSS</h3>
-                                    <div class="stars"><p class="filled">★★</p><p class="unfilled">★★★</p></div>
-                                </div>
-                                <div class="skill flex-center">
-                                    <h3>JavaScript</h3>
-                                    <div class="stars"><p class="filled">★</p><p class="unfilled">★★★★</p></div>
-                                </div>
-                                <div class="skill flex-center">
-                                    <h3>Python</h3>
-                                    <div class="stars"><p class="filled">★★★★</p><p class="unfilled">★</p></div>
-                                </div>
-                                <div class="skill flex-center">
-                                    <h3>C/C++</h3>
-                                    <div class="stars"><p class="filled">★★★★</p><p class="unfilled">★</p></div>
-                                </div>
-                                <div class="skill flex-center">
-                                    <h3>Assembly</h3>
-                                    <div class="stars"><p class="filled">★★</p><p class="unfilled">★★★</p></div>
-                                </div>
-                    </section>
-                </div>
-
-                <!-- Featured Project -->
-                <div class="projects-box">
-                    <h2><ins>Latest Project</ins></h2>
-                    <a href="http://www.luklun.se/fractal.html"><article class="project-card">
-                        <img src="./images/fractal.jpg" alt="Fractal image generated in hobby project">
-                        <div class="project-text">
-                            <h3>Fractal generation in js</h3>
-                            <p>A fractal generator using javascript to generate fractals using L-systems, utilizing a custom turtle for drawing.
-                            Created as a hobby project and complete with a UI that let's the user configure the generator as well ass choose from
-                            a variety of L-system rulesets, and the possibility to download images as well as save them to the browser's cache
-                            on the webpage
-                            </p>
-                        </div>
-                    </article></a>
-                </div>
-            </div>
-        </section>
     </div>
+
+    <section class="homepage-project-container">
+        <h2 class="homepage-projects-title">Project fields</h2>
+        <section class="homepage-project-cards">
+            <article class="homepage-project">
+                <div class="homepage-project-text">
+                    <h2>Web Development</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium itaque nostrum culpa asperiores minima, eius voluptate repellat commodi eos harum labore aut quibusdam, provident aliquam quos temporibus ipsa blanditiis hic.</p>
+                    <a href="./projects.html?filter=web" class="see-more">See more</a>
+                </div>
+            </article>
+            <article class="homepage-project">
+                <div class="homepage-project-text">
+                    <h2>Hobby projects</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium itaque nostrum culpa asperiores minima, eius voluptate repellat commodi eos harum labore aut quibusdam, provident aliquam quos temporibus ipsa blanditiis hic.</p>
+                    <a href="./projects.html?filter=hobby" class="see-more">See more</a>
+                </div>
+            </article>
+            <article class="homepage-project">
+                <div class="homepage-project-text">
+                    <h2>School projects</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium itaque nostrum culpa asperiores minima, eius voluptate repellat commodi eos harum labore aut quibusdam, provident aliquam quos temporibus ipsa blanditiis hic.</p>
+                    <a href="./projects.html?filter=school" class="see-more">See more</a>
+                </div>
+            </article>
+        </section>
+    </section>
 
     <!-- Footer -->
     <footer>

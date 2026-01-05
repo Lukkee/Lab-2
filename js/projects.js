@@ -184,3 +184,17 @@ document.querySelectorAll(".filter-btn").forEach(btn => {
 });
 
 setActiveFilter("all");
+
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.get("filter") === "web") {
+    setActiveFilter("web");
+  }
+  if (params.get("filter") === "school") {
+    setActiveFilter("school");
+  }
+  if (params.get("filter") === "hobby") {
+    setActiveFilter("hobby");
+  }
+});
