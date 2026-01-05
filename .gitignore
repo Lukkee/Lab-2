@@ -1,0 +1,11 @@
+# report
+*.pdf
+
+# Windows
+Thumbs.db
+
+# VS Code
+.vscode/
+
+dist/
+build/

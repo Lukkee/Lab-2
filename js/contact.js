@@ -42,10 +42,10 @@ function validateFirstName() {  // Checks if first name contains only letters
 
     if (firstname === "") {
         showError(F_FIRSTNAME.e_msg1);
-        F_FIRSTNAME.errormask |= 1 << 0;
+        F_FIRSTNAME.errormask |= 1 << 0;    // Adds MSB to errormask
     } else if (!/^[A-Za-z]+$/.test(firstname)) {
         showError(F_FIRSTNAME.e_msg2);
-        F_FIRSTNAME.errormask |= 1 << 1;
+        F_FIRSTNAME.errormask |= 1 << 1;    // Adds LSB to errormask
     }
 }
 
@@ -79,7 +79,7 @@ function validateEmail() {      // - Check if email format is valid (contains @ 
         showError(F_EMAIL.e_msg2);
         F_EMAIL.errormask |= 1 << 1;
     }
-    /* 
+    /* REGEX explaination 
     ^[^\s@]+    - start with at least one character that isn't whitespace or @
     @           - must contain exactly one @
     [^\s@]+     - domain name part
