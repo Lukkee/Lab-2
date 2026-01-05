@@ -19,27 +19,30 @@ This repository contains the source code for a personal portfolio website, made 
 No external libraries or frameworks have been used.
 
 ## Project Structure
+```text
 ├── css/
-│ └── style.css     # Global styles and themes
+│   └── style.css     # Global styles and themes
 ├── images/
-│ └── *.png / *.jpg # Images and icons
+│   └── *.png / *.jpg # Images and icons
 ├── js/
-│ ├── contact.js    # Handles contact-form 
-│ ├── loadtheme.js  # Handles loading theme from cookies
-│ └── projects.js   # Handles project filtering and loading
-│ └── theme.js      # Handles switching themes and saving to cookies
-├── about.html      # About & timeline
-├── projects.html   # Projects with filtering
-├── index.html      # Home page
-├── contact.html    # Contact form and links
+│   ├── contact.js    # Handles contact-form 
+│   ├── loadtheme.js  # Handles loading theme from cookies
+│   ├── projects.js  # Handles project filtering and loading
+│   └── theme.js     # Handles switching themes and saving to cookies
+├── about.html        # About & timeline
+├── projects.html     # Projects with filtering
+├── index.html        # Home page
+├── contact.html      # Contact form and links
 └── README.md
+```
 
 ## Setup
 This project is a static website and does not require any dependencies.
 
 1. Clone the repository:
-
-> git clone https://github.com/Lukkee/portfolio.git
+```bash
+git clone https://github.com/Lukkee/portfolio.git
+```
 
 Navigate to the project folder:
 
