@@ -1,18 +1,20 @@
 class element {     // Class to handle elements
     constructor(handle, errormask, e_msg1, e_msg2){
-        this.handle = handle;
-        this.errormask = errormask;
-        this.e_msg1 = e_msg1;
-        this.e_msg2 = e_msg2;
+        this.handle = handle;           // Reference to DOM element
+        this.errormask = errormask;     // Bitmask for storing error-types
+        this.e_msg1 = e_msg1;           // Error message 1
+        this.e_msg2 = e_msg2;           // Error message 2
     }
 }
 
+/*  Input elements  */
 const F_FIRSTNAME   =   new element(document.getElementById('ffirstname'),  0, "First name can not be empty.",  "First name must contain only letters.");
 const F_LASTNAME    =   new element(document.getElementById("flastname"),   0, "Last name can not be empty.",   "Last name must contain only letters.");
 const F_EMAIL       =   new element(document.getElementById("femail"),      0, "Email can not be empty.",       "Email is not valid.");
 const F_SUBJECT     =   new element(document.getElementById("fsubject"),    0, "NONE",                          "NONE");
 const F_MESSAGE     =   new element(document.getElementById("fmessage"),    0, "Message can not be empty",      "Message must be at least 20 characters.");
 
+/*  Other elements  */
 const F_SUBMIT              =   document.getElementById("fsubmit");
 const F_RESET               =   document.getElementById("freset");
 const F_COUNTER             =   document.getElementById("fchar-counter");
@@ -24,32 +26,41 @@ const cdefault = '#798777';
 const cvalid = '#2ecc71'
 const cerror = '#dc3545';
 
-let errorlist = [];
+let errorlist = [];         // buffer for error messages
 
-/* functions */
 
 /* Validation functions */
-function validateName() {       // - Check if name contains only letters (no numbers or special characters)
+function validateName() {
     validateFirstName();
     validateLastName();
 }
 
-function validateFirstName() {  // Checks if first name contains only letters
+// Checks if first name contains only letters
+function validateFirstName() {  
     F_FIRSTNAME.errormask = 0;
-    let firstname = F_FIRSTNAME.handle.value.trim();
+    let firstname = F_FIRSTNAME.handle.value.trim();    // Removes whitespaces at end or beginning
     clearError(F_FIRSTNAME.e_msg1);
     clearError(F_FIRSTNAME.e_msg2);
 
     if (firstname === "") {
         showError(F_FIRSTNAME.e_msg1);
         F_FIRSTNAME.errormask |= 1 << 0;    // Adds MSB to errormask
-    } else if (!/^[A-Za-z]+$/.test(firstname)) {
+    } else if (!/^[A-Za-z]+$/.test(firstname)) {    // Checks regex
         showError(F_FIRSTNAME.e_msg2);
         F_FIRSTNAME.errormask |= 1 << 1;    // Adds LSB to errormask
     }
+    /* REGEX explanation
+        /.../   - encapsulates regex
+        ^       - match must start at beginning
+        [...]   - must contain encapsulated letters
+        A-Za-z  - A-Z || a-z
+        +       - length >= 1
+        $       - match must end at the end (stops other characters)
+    */
 }
 
-function validateLastName() {   // Checks if last name contains only letters
+// Checks if last name contains only letters
+function validateLastName() {
     F_LASTNAME.errormask = 0;
     let lastname = F_LASTNAME.handle.value.trim();
     clearError(F_LASTNAME.e_msg1);
@@ -58,14 +69,14 @@ function validateLastName() {   // Checks if last name contains only letters
     if (lastname === "") {
         showError(F_LASTNAME.e_msg1);
         F_LASTNAME.errormask |= 1 << 0;
-    } else if (!/^[A-Za-z]+$/.test(lastname)) {
+    } else if (!/^[A-Za-z]+$/.test(lastname)) { // Same REGEX as in validateFirstName()
         showError(F_LASTNAME.e_msg2);
         F_LASTNAME.errormask |= 1 << 1;
     }
 }
   
-
-function validateEmail() {      // - Check if email format is valid (contains @ and domain)
+// - Check if email format is valid (contains @ and domain)
+function validateEmail() {      
     F_EMAIL.errormask = 0;
     let email = F_EMAIL.handle.value.trim();
 

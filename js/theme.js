@@ -10,7 +10,7 @@ function ClearCurrent() {
     BODY.classList.remove('light');
     BODY.classList.remove('dark');
     BODY.classList.remove('green');
-    BODY.classList.remove('fadein')
+    BODY.classList.remove('fadein');
 }
 
 function ChangeTheme(theme) {
@@ -35,7 +35,7 @@ function ChangeTheme(theme) {
             break;
     }
 
-    BODY.offsetWidth;
+    BODY.offsetWidth;               // Read width from body to reset reading
     BODY.classList.add('fadein');
     saveTheme(theme);
 }
