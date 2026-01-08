@@ -140,10 +140,11 @@ function buildProjectCard(project) {
 //  Load active cards
 function loadCards() {
     let active_projects_len = active_projects.length;
-    for (const project of active_projects) {
+    const load_projects = active_projects.slice(0, 4);
+    for (const project of load_projects) {
         CONTAINER.appendChild(buildProjectCard(project));
     }
-    F_TEXT.textContent = `Showing ${active_projects_len} / ${projects_len} projects!`
+    F_TEXT.textContent = `Showing ${load_projects.length} / ${projects_len} projects!`
 }
 
 //  Change filter
